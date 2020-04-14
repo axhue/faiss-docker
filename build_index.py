@@ -3,11 +3,16 @@ import pandas as pd
 import os
 import numpy as np
 
+#Adjust these to fit
+in_dir = '/media/data/NLPDatasets_v6_preprocessed_v6_vectors/'
+
+out_dir = '/media/data/'
+
 def str_num_sort(inp_str):
     return int(inp_str.split('_')[-1].split('.')[0])
 
-PATH = '/media/data/NLPDatasets_v6_preprocessed_v6_vectors/'
-pickle_list = [PATH + p for p in os.listdir(PATH)]
+
+pickle_list = [in_dif + p for p in os.listdir(in_dir)]
 pickle_list.sort(key=str_num_sort)
 
 
@@ -32,11 +37,11 @@ for pickle in pickle_list:
 
 
 
-state_dir = '/media/data/'
+
 
 faiss.write_index(
     index,
-    os.path.join(state_dir, "faiss.index")
+    os.path.join(out_dir, "faiss.index")
 )
 
 #index = faiss.read_index(os.path.join(state_dir, "faiss.index"))
